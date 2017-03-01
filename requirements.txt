@@ -4,5 +4,5 @@ numpy==1.11.2
 scipy==0.18.1
 scikit-learn==0.18.1
 Pillow==3.4.2
-opencv-python==3.2.0
+opencv-python==3.2.0.6
 pytesseract==0.1.16
