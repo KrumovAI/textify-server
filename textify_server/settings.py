@@ -26,7 +26,7 @@ SECRET_KEY = 'y(tg6^3)2&o&8sgw_y5=m_!d7%jkgl&yq)fqbzmprz^2mjd)@#'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://sheltered-lake-94981.herokuapp.com/',
+    'sheltered-lake-94981.herokuapp.com',
 ]
 
 
