@@ -32,7 +32,7 @@ def get_data(user, user_folder):
         if not os.path.isdir(save_path):
             os.makedirs(save_path)
 
-    data_generation.generate_data(user)
+    data_generation.generate_data(user_folder)
 
 
 def delete_data(user_path):
