@@ -25,7 +25,9 @@ SECRET_KEY = 'y(tg6^3)2&o&8sgw_y5=m_!d7%jkgl&yq)fqbzmprz^2mjd)@#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://sheltered-lake-94981.herokuapp.com/',
+]
 
 
 # Application definition
@@ -54,8 +56,7 @@ ROOT_URLCONF = 'textify_server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
