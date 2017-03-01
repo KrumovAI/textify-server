@@ -11,7 +11,7 @@ def train_machine(user_path):
 
     print("======COLLECTING DATA======")
     for i in range(0, 26):
-        path = os.path.join(os.getcwd(), 'user_files')
+        path = 'user_files'
         path = os.path.join(path, user_path)
         path = os.path.join(path, 'handwritten/' + str(i) + '/data')
         counter = 0

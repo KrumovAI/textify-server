@@ -19,7 +19,7 @@ def get_drawings(user_id, label):
         return result
     except User.DoesNotExist:
         result = []
-        path = os.getcwd() + '/textify/handwritten/' + str(label)
+        path = 'textify/handwritten/' + str(label)
 
         for file in os.listdir(path):
             if file != 'data' and file != 'Thumbs.db':
@@ -31,17 +31,15 @@ def get_drawings(user_id, label):
 
 
 def upload_drawings(user_id, name, label_index, file):
-    basepath = os.getcwd()
-
     try:
         user = User.objects.get(pk=user_id)
         try:
             db_drawing = user.drawing_set.get(name=name, label_index=label_index)
-            db_drawing.image.save(basepath + '/user_files/drawings/' + str(uuid.uuid4()) + '.png', file, True)
+            db_drawing.image.save('user_files/drawings/' + str(uuid.uuid4()) + '.png', file, True)
         except Drawing.DoesNotExist:
             db_drawing = user.drawing_set.create(name=name, label_index=label_index,
                                                  label=symbols[int(float(label_index))])
-            db_drawing.image.save(basepath + '/user_files/drawings/' + str(uuid.uuid4()) + '.png', file, True)
+            db_drawing.image.save('user_files/drawings/' + str(uuid.uuid4()) + '.png', file, True)
 
         return True
     except User.DoesNotExist:

@@ -59,7 +59,7 @@ def create_variants(img):
 
 def generate_data(user_folder):
     for i in range(26):
-        path = os.path.join(os.getcwd(), "user_files")
+        path = "user_files"
         path = os.path.join(path, os.path.join(user_folder, "handwritten"))
         path = os.path.join(path, str(i))
 

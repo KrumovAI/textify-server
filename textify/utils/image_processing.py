@@ -48,7 +48,7 @@ def resize(img, baseheight):
 
 def paste(img, use_mask, x_offset=0, y_offset=0):
     width, height = img.size
-    background_path = os.path.join(os.getcwd(), os.path.join('textify', 'img'))
+    background_path = os.path.join('textify', 'img')
     background = Image.open(os.path.join(background_path, "sample.png")).convert('L')
     bg_w, bg_h = background.size
     offset = (int((bg_w - width) / 2) + x_offset, int((bg_h - height) / 2) + y_offset)
