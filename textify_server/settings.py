@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'textify_server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'textify',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'NAME': 'd139e8e8hrjh1v',
+        'USER': 'lkftmzoqllsuwl',
+        'PASSWORD': '6ec4ed4d8be94e2e33c885d56b48336d562193732e1932bca6e1e15c98fb815d',
+        'HOST': 'ec2-174-129-41-23.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
