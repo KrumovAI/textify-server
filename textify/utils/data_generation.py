@@ -1,5 +1,6 @@
 from PIL import Image
 
+
 from textify.utils.image_processing import *
 from textify.utils.contours_processing import *
 
@@ -59,12 +60,12 @@ def create_variants(img):
 
 def generate_data(user_folder):
     for i in range(26):
-        path = "user_files"
+        path = os.path.join(os.getcwd(), "user_files")
         path = os.path.join(path, os.path.join(user_folder, "handwritten"))
         path = os.path.join(path, str(i))
 
         for j in range(1, 5):
-            filename = path + "\\img-" + str(j) + ".png"
+            filename = os.path.join(path, "img-" + str(j) + ".png")
             im = cv2.imread(filename)
             thresh = threshold(im, False)
             contours = get_contours(thresh)

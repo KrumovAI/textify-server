@@ -24,7 +24,7 @@ def train_machines(user_id):
         user.classificationmachine_set.all().delete()
         get_data(user, folder_name)
         cla = classification.train_machine(folder_name)
-        pickle_path = to_pickle(cla, os.path.join('user_files', 'classifiers'))
+        pickle_path = to_pickle(cla, os.path.join(os.getcwd(), os.path.join('user_files', 'classifiers')))
         user.classificationmachine_set.create(pickle=pickle_path)
         delete_data(folder_name)
     except User.DoesNotExist:
@@ -36,7 +36,8 @@ def textify_handprinted(user_id, img):
         user = User.objects.get(pk=user_id)
         classifier_path = user.classificationmachine_set.first().pickle
     except:
-        classifier_path = os.path.join('user_files', os.path.join('classifiers', 'default.pkl'))
+        classifier_path = os.path.join(os.getcwd(), os.path.join('user_files',
+                                                                 os.path.join('classifiers', 'default.pkl')))
 
     with open(classifier_path, 'rb') as handle:
         classifier = pickle.load(handle)
