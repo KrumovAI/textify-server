@@ -24,6 +24,7 @@ def schedule_training(user_id):
             raise MachineCurrentlyTrainingException('Machine is currently being trained!')
         else:
             user.training_machine = True
+            user.save(update_fields=["training_machine"])
             thread = threading.Thread(target=train_machines, args=(user,))
             thread.daemon = True
             thread.start()
@@ -53,6 +54,7 @@ def train_machines(user):
     pickle_path = to_pickle(cla, os.path.join(os.getcwd(), os.path.join('user_files', 'classifiers')))
     user.classificationmachine_set.create(pickle=pickle_path)
     user.training_machine = False
+    user.save(update_fields=["training_machine"])
     delete_data(folder_name)
 
 
