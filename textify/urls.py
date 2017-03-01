@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^drawings$', views.get_drawings, name='drawings'),
     url(r'^drawings/upload$', views.upload_drawings, name='drawings_upload'),
     url(r'^train$', views.train_machines, name='train'),
+    url(r'^check$', views.check_completion, name='check'),
     url(r'^register$', views.register, name='register'),
     url(r'^login$', views.login, name='login'),
 ]

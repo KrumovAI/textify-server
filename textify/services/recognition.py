@@ -3,6 +3,7 @@ from textify.models import User
 from textify.core.text_converter import TextConverter
 from textify.exceptions import *
 from textify.utils.fill import *
+import threading
 import textify.utils.classification as classification
 from textify.core.data_collectors import *
 import textify.core.handwritten_rec as handwritten_rec
@@ -16,19 +17,43 @@ def textify(img):
     return text
 
 
-def train_machines(user_id):
+def schedule_training(user_id):
     try:
-        folder_name = str(uuid.uuid4())
         user = User.objects.get(pk=user_id)
-        fill_drawings(user)
-        user.classificationmachine_set.all().delete()
-        get_data(user, folder_name)
-        cla = classification.train_machine(folder_name)
-        pickle_path = to_pickle(cla, os.path.join(os.getcwd(), os.path.join('user_files', 'classifiers')))
-        user.classificationmachine_set.create(pickle=pickle_path)
-        delete_data(folder_name)
+        if user.training_machine:
+            raise MachineCurrentlyTrainingException('Machine is currently being trained!')
+        else:
+            user.training_machine = True
+            thread = threading.Thread(target=train_machines, args=(user,))
+            thread.daemon = True
+            thread.start()
+            return True
     except User.DoesNotExist:
-        raise UserDoesNotExistException("User does not exist")
+        raise UserDoesNotExistException("User does not exist!")
+
+
+def check_for_completion(user_id):
+    try:
+        user = User.objects.get(pk=user_id)
+
+        if user.training_machine:
+            raise MachineCurrentlyTrainingException('Machine is currently being trained!')
+        else:
+            return True
+    except User.DoesNotExist:
+        raise UserDoesNotExistException("User does not exist!")
+
+
+def train_machines(user):
+    folder_name = str(uuid.uuid4())
+    fill_drawings(user)
+    user.classificationmachine_set.all().delete()
+    get_data(user, folder_name)
+    cla = classification.train_machine(folder_name)
+    pickle_path = to_pickle(cla, os.path.join(os.getcwd(), os.path.join('user_files', 'classifiers')))
+    user.classificationmachine_set.create(pickle=pickle_path)
+    user.training_machine = False
+    delete_data(folder_name)
 
 
 def textify_handprinted(user_id, img):

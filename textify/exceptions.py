@@ -20,3 +20,7 @@ class PasswordTooSHortException(Exception):
 
 class WrongEmailOrPasswordException(Exception):
     pass
+
+
+class MachineCurrentlyTrainingException(Exception):
+    pass

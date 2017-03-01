@@ -23,7 +23,7 @@ def register_user(email, password, confirm_pass):
                 except User.DoesNotExist:
                     m = hashlib.md5()
                     m.update(password)
-                    user = User.objects.create(email=email, password=m.hexdigest())
+                    user = User.objects.create(email=email, password=m.hexdigest(), training_machine=False)
                     fill_drawings(user)
                     return str(user.id)
     else:

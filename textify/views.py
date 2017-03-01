@@ -99,7 +99,23 @@ def train_machines(request):
         user_id = request.POST["user_id"]
 
         try:
-            recognition.train_machines(user_id)
-            return HttpResponse('Classifier trained!')
+            recognition.schedule_training(user_id)
+            return HttpResponse('Classifier is now being trained!')
         except UserDoesNotExistException as e:
             raise Http404(e)
+        except MachineCurrentlyTrainingException as m:
+            return HttpResponseBadRequest(m)
+
+
+@csrf_exempt
+def check_completion(request):
+    if request.method == 'GET':
+        user_id = request.GET["user_id"]
+
+        try:
+            recognition.check_for_completion(user_id)
+            return HttpResponse('Training completed!')
+        except UserDoesNotExistException as e:
+            raise Http404(e)
+        except MachineCurrentlyTrainingException as m:
+            return HttpResponseBadRequest(m)
