@@ -100,6 +100,7 @@ def train_machines(request):
 
         try:
             recognition.schedule_training(user_id)
+            recognition.train_machine.after_response(user)
             return HttpResponse('Classifier is now being trained!')
         except UserDoesNotExistException as e:
             raise Http404(e)

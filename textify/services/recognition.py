@@ -4,7 +4,6 @@ from textify.models import User
 from textify.core.text_converter import TextConverter
 from textify.exceptions import *
 from textify.utils.fill import *
-import threading
 import textify.utils.classification as classification
 from textify.core.data_collectors import *
 import textify.core.handwritten_rec as handwritten_rec
@@ -26,7 +25,6 @@ def schedule_training(user_id):
         else:
             user.training_machine = True
             user.save(update_fields=["training_machine"])
-            train_machine.after_response(user)
             return True
     except User.DoesNotExist:
         raise UserDoesNotExistException("User does not exist!")
