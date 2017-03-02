@@ -1,4 +1,5 @@
 import pickle
+import after_response
 from textify.models import User
 from textify.core.text_converter import TextConverter
 from textify.exceptions import *
@@ -25,9 +26,7 @@ def schedule_training(user_id):
         else:
             user.training_machine = True
             user.save(update_fields=["training_machine"])
-            thread = threading.Thread(target=train_machines, args=(user,))
-            thread.daemon = True
-            thread.start()
+            train_machine.after_response(user)
             return True
     except User.DoesNotExist:
         raise UserDoesNotExistException("User does not exist!")
@@ -45,7 +44,8 @@ def check_for_completion(user_id):
         raise UserDoesNotExistException("User does not exist!")
 
 
-def train_machines(user):
+@after_response.enable
+def train_machine(user):
     folder_name = str(uuid.uuid4())
     fill_drawings(user)
     user.classificationmachine_set.all().delete()
