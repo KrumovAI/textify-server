@@ -73,8 +73,8 @@
       <file leaf-file-name="text_converter.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/textify/core/text_converter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+            <state relative-caret-position="377">
+              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -1007,8 +1007,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/textify/core/text_converter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        <state relative-caret-position="377">
+          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>

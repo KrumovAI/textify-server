@@ -15,7 +15,6 @@ class TextConverter:
         cv2.imwrite(temp_filename, thresh)
 
         img = Image.open(temp_filename)
-        pytesseract.image_to_string()
         text = pytesseract.image_to_string(img, lang="eng")
         text = os.linesep.join([s for s in text.splitlines() if s])
         os.remove(temp_filename)
