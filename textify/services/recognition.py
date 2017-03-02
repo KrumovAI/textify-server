@@ -1,5 +1,4 @@
 import pickle
-import after_response
 from textify.models import User
 from textify.core.text_converter import TextConverter
 from textify.exceptions import *
@@ -7,6 +6,7 @@ from textify.utils.fill import *
 import textify.utils.classification as classification
 from textify.core.data_collectors import *
 import textify.core.handwritten_rec as handwritten_rec
+from textify.utils.postpone import postpone
 
 
 def textify(img):
@@ -25,6 +25,7 @@ def schedule_training(user_id):
         else:
             user.training_machine = True
             user.save(update_fields=["training_machine"])
+            train_machine(user)
             return True
     except User.DoesNotExist:
         raise UserDoesNotExistException("User does not exist!")
@@ -42,7 +43,7 @@ def check_for_completion(user_id):
         raise UserDoesNotExistException("User does not exist!")
 
 
-@after_response.enable
+@postpone
 def train_machine(user):
     folder_name = str(uuid.uuid4())
     fill_drawings(user)
