@@ -36,5 +36,5 @@ def get_data(user, user_folder):
 
 
 def delete_data(user_path):
-    path = os.path.join(os.getcwd, os.path.join('user_files', user_path))
+    path = os.path.join(os.getcwd(), os.path.join('user_files', user_path))
     shutil.rmtree(path)

@@ -6,7 +6,7 @@ from textify.utils.fill import *
 import textify.utils.classification as classification
 from textify.core.data_collectors import *
 import textify.core.handwritten_rec as handwritten_rec
-from textify.utils.postpone import postpone
+from background_task import background, tasks
 
 
 def textify(img):
@@ -25,7 +25,7 @@ def schedule_training(user_id):
         else:
             user.training_machine = True
             user.save(update_fields=["training_machine"])
-            train_machine(user)
+            train_machine(user_id)
             return True
     except User.DoesNotExist:
         raise UserDoesNotExistException("User does not exist!")
@@ -43,8 +43,9 @@ def check_for_completion(user_id):
         raise UserDoesNotExistException("User does not exist!")
 
 
-@postpone
-def train_machine(user):
+@background()
+def train_machine(user_id):
+    user = User.objects.get(pk=user_id)
     folder_name = str(uuid.uuid4())
     fill_drawings(user)
     user.classificationmachine_set.all().delete()
