@@ -4,6 +4,7 @@ import cv2
 import os
 import uuid
 
+
 class TextConverter:
     @staticmethod
     def convert(filename):
