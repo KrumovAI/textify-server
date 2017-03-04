@@ -3,7 +3,7 @@ Django==1.10.5
 gunicorn==19.6.0
 psycopg2==2.6.1
 whitenoise==2.0.6
-django-background-tasks==1.1.0
+django-background-tasks==1.1.0rc2
 requests==2.12.3
 numpy==1.11.2
 scipy==0.18.1
