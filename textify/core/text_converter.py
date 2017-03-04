@@ -4,7 +4,6 @@ import cv2
 import os
 import uuid
 
-
 class TextConverter:
     @staticmethod
     def convert(filename):
@@ -15,7 +14,7 @@ class TextConverter:
         cv2.imwrite(temp_filename, thresh)
 
         img = Image.open(temp_filename)
-        text = pytesseract.image_to_string(img, lang="eng")
+        text = pytesseract.image_to_string(img)
         text = os.linesep.join([s for s in text.splitlines() if s])
         os.remove(temp_filename)
         return text
