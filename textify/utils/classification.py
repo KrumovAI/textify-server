@@ -58,6 +58,5 @@ def train_machine(user_path):
     # plt.scatter(predicted, expected)
     # plt.show()
 
-    print("=====SAVING CLASSIFIER=====")
     return classifier
 
