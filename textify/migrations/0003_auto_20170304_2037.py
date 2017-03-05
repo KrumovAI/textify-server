@@ -13,41 +13,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='CompletedTask',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('task_name', models.CharField(db_index=True, max_length=255)),
-                ('task_params', models.TextField()),
-                ('task_hash', models.CharField(db_index=True, max_length=40)),
-                ('priority', models.IntegerField(db_index=True, default=0)),
-                ('run_at', models.DateTimeField(db_index=True)),
-                ('queue', models.CharField(blank=True, db_index=True, max_length=255, null=True)),
-                ('attempts', models.IntegerField(db_index=True, default=0)),
-                ('failed_at', models.DateTimeField(blank=True, db_index=True, null=True)),
-                ('last_error', models.TextField(blank=True)),
-                ('locked_by', models.CharField(blank=True, db_index=True, max_length=64, null=True)),
-                ('locked_at', models.DateTimeField(blank=True, db_index=True, null=True)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Task',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('task_name', models.CharField(db_index=True, max_length=255)),
-                ('task_params', models.TextField()),
-                ('task_hash', models.CharField(db_index=True, max_length=40)),
-                ('priority', models.IntegerField(db_index=True, default=0)),
-                ('run_at', models.DateTimeField(db_index=True)),
-                ('queue', models.CharField(blank=True, db_index=True, max_length=255, null=True)),
-                ('attempts', models.IntegerField(db_index=True, default=0)),
-                ('failed_at', models.DateTimeField(blank=True, db_index=True, null=True)),
-                ('last_error', models.TextField(blank=True)),
-                ('locked_by', models.CharField(blank=True, db_index=True, max_length=64, null=True)),
-                ('locked_at', models.DateTimeField(blank=True, db_index=True, null=True)),
-            ],
-            options={
-                'db_table': 'background_task',
-            },
+        migrations.AddField(
+            model_name='background_task',
+            name='verbose_name',
+            field=models.TextField(null=True),
         ),
     ]
