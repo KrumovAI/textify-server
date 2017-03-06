@@ -26,7 +26,6 @@ SECRET_KEY = 'y(tg6^3)2&o&8sgw_y5=m_!d7%jkgl&yq)fqbzmprz^2mjd)@#'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'sheltered-lake-94981.herokuapp.com',
     '127.0.0.1',
     'localhost',
 ]
@@ -41,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'background_task.apps.BackgroundTasksAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -81,10 +79,10 @@ WSGI_APPLICATION = 'textify_server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd139e8e8hrjh1v',
-        'USER': 'lkftmzoqllsuwl',
-        'PASSWORD': '6ec4ed4d8be94e2e33c885d56b48336d562193732e1932bca6e1e15c98fb815d',
-        'HOST': 'ec2-174-129-41-23.compute-1.amazonaws.com',
+        'NAME': 'textify',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

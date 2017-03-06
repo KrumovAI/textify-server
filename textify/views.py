@@ -8,7 +8,6 @@ from textify.exceptions import *
 from textify.utils.image_processing import *
 from textify.services import drawings, recognition, user
 
-
 # user services
 @csrf_exempt
 def register(request):
@@ -100,7 +99,7 @@ def train_machines(request):
 
         try:
             recognition.schedule_training(user_id)
-            return HttpResponse('Classifier is now being trained!')
+            return HttpResponse('Classifier Trained!')
         except UserDoesNotExistException as e:
             raise Http404(e)
         except MachineCurrentlyTrainingException as m:

@@ -129,15 +129,6 @@ class User(models.Model):
         return self.email
 
 
-class Note(models.Model):
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    textfile = models.FileField()
-
-    def __str__(self):
-        return self.name
-
-
 class Drawing(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     name = models.CharField(max_length=100)

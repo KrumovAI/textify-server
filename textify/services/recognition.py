@@ -6,8 +6,6 @@ from textify.utils.fill import *
 import textify.utils.classification as classification
 from textify.core.data_collectors import *
 import textify.core.handwritten_rec as handwritten_rec
-from background_task import background, tasks
-
 
 def textify(img):
     filename = os.path.join('user_files', str(uuid.uuid4()) + '.png')
@@ -43,7 +41,6 @@ def check_for_completion(user_id):
         raise UserDoesNotExistException("User does not exist!")
 
 
-@background()
 def train_machine(user_id):
     user = User.objects.get(pk=user_id)
     folder_name = str(uuid.uuid4())

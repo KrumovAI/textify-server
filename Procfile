@@ -1,1 +1,0 @@
-web: gunicorn textify_server.wsgi --log-file -
